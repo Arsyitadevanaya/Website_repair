@@ -21,6 +21,7 @@ $ulasan = mysqli_query($conn, "SELECT ulasan.id_ulasan, ulasan.ulasan, pemesanan
 	<meta name="description" content="SolMusic HTML Template">
 	<meta name="keywords" content="music, html">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 
 	<!-- Favicon -->
 	<link href="img/favicon_repair.png" rel="shortcut icon" />
@@ -39,6 +40,9 @@ $ulasan = mysqli_query($conn, "SELECT ulasan.id_ulasan, ulasan.ulasan, pemesanan
 	<link rel="stylesheet" href="css/font-awesome.min.css" />
 	<link rel="stylesheet" href="css/owl.carousel.min.css" />
 	<link rel="stylesheet" href="css/slicknav.min.css" />
+
+	<!-- Swiper CSS -->
+	<link rel="stylesheet" href="css/swiper-bundle.min.css">
 
 	<!-- Main Stylesheets -->
 	<link rel="stylesheet" href="css/style.css" />
@@ -190,29 +194,72 @@ $ulasan = mysqli_query($conn, "SELECT ulasan.id_ulasan, ulasan.ulasan, pemesanan
 
 	<!-- How section -->
 	<section class="how-section spad set-bg">
-		<div class="container text-white">
-			<div class="section-title" align="center">
+		<div class="container ">
+			<div class="section-title text-white" align="center">
 				<h2>Cari Teknisimu</h2>
 			</div>
 			<div class="row">
-				<?php
-				while ($teknisi = mysqli_fetch_array($query)) {
-
-					?>
-					<div class="col-md-4">
-						<div class="how-item">
-							<h4>
-								<?php echo $teknisi['nama_teknisi']; ?>
-								<p>
-									<?php echo $teknisi['usia'] . ' Tahun'; ?>
-								</p>
-							</h4>
-							<p>
-								<?php echo $teknisi['deskripsi_pengalaman']; ?>
-							</p>
+				<div class="slide-container swiper">
+					<div class="slide-content">
+						<div class="card-wrapper swiper-wrapper" style="max-width: 100%; ">
+							<?php
+								while ($teknisi = mysqli_fetch_array($query)) {
+								?>
+							<div class="card swiper-slide">	
+								<div class="card-content">
+										<br><h2 class="name">
+											<?php echo $teknisi['nama_teknisi']; ?>
+												<p>
+													<?php echo $teknisi['usia'] . ' Tahun'; ?>
+												</p>
+											</h2><br>
+										<p class="description"> 
+											<?php echo $teknisi['deskripsi_pengalaman']; ?>
+										</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+									<br><h2 class="name">Arsyita Devanaya</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+									<br><h2 class="name">Gandi Rukmaning</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+									<br><h2 class="name">Shofira Izza</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+									<br><h2 class="name">Alfira Putri</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+									<br><h2 class="name">Mirta Chadhirotin</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+									<br><h2 class="name">Singa Lawu</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<?php } ?>
 						</div>
 					</div>
-				<?php } ?>
+					<div class="swiper-button-next swiper-navBtn"></div>
+    				<div class="swiper-button-prev swiper-navBtn"></div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -222,7 +269,7 @@ $ulasan = mysqli_query($conn, "SELECT ulasan.id_ulasan, ulasan.ulasan, pemesanan
 	<section class="intro-section spad">
 		<div class="container" align="center" style="padding-top: 50px; padding-bottom: 80px;">
 			<div class="section-title" align="center">
-				<h2>Tentang Kami</h2>
+				<h2><i class="fa-solid fa-quote-left"></i> Tentang Kami <i class="fa-solid fa-quote-right"></i></h2>
 			</div>
 			<div class="script">
 				<p>RepairLectric adalah platform website yang dirancang untuk memudahkan Anda dalam menemukan teknisi
@@ -251,11 +298,11 @@ $ulasan = mysqli_query($conn, "SELECT ulasan.id_ulasan, ulasan.ulasan, pemesanan
 				</div>
 				<div class="col-lg-6">
 					<ul class="sub-list">
-						<li><img src="img/icons/check-icon.png" alt="">Memiliki Teknisi Terpercaya</li>
-						<li><img src="img/icons/check-icon.png" alt="">Pelayanan Cepat dan Tepat</li>
-						<li><img src="img/icons/check-icon.png" alt="">Harga yang Terjangkau</li>
-						<li><img src="img/icons/check-icon.png" alt="">Terdapat Video Tips & Trick</li>
-						<li><img src="img/icons/check-icon.png" alt="">Tersedia Fitur Konsultasi</li>
+						<li><i class="fa-solid fa-circle-check"></i> Memiliki Teknisi Terpercaya</li>
+						<li><i class="fa-solid fa-circle-check"></i> Pelayanan Cepat dan Tepat</li>
+						<li><i class="fa-solid fa-circle-check"></i> Harga yang Terjangkau</li>
+						<li><i class="fa-solid fa-circle-check"></i> Terdapat Video Tips & Trick</li>
+						<li><i class="fa-solid fa-circle-check"></i> Tersedia Fitur Konsultasi</li>
 					</ul>
 				</div>
 			</div>
@@ -263,44 +310,72 @@ $ulasan = mysqli_query($conn, "SELECT ulasan.id_ulasan, ulasan.ulasan, pemesanan
 	</section>
 	<!-- Subscription section end -->
 
-
-
-	<!-- Premium section end -->
 	<section class="premium-section spad">
-		<div class="container" align="center">
-			<div class="section-title">
-				<h2>Pesan Sekarang Juga</h2>
-			</div>
-			<a href="https://wa.me/6285175002568" target="_blank" class="whatsapp-button" style="font-size: 30px">
-				Order Me Now
-			</a>
-		</div>
-	</section>
-	<!-- Premium section end -->
-	<section class="how-section spad set-bg">
-		<div class="container text-white">
+		<div class="container">
 			<div class="section-title" align="center">
 				<h2>Ulasan Pelanggan</h2>
 			</div>
 			<div class="row">
-				<?php
-				while ($kolom_ulas = mysqli_fetch_array($ulasan)) {
-
-					?>
-					<div class="col-md-4">
-						<div class="how-item">
-							<h4>
-								<?php echo $kolom_ulas['nama_pelanggan']; ?>
-								<p>
-									<?php echo $kolom_ulas['nama_elektronik']; ?>
-								</p>
-							</h4>
-							<p>
-								<?php echo $kolom_ulas['ulasan']; ?>
-							</p>
+			<div class="slide-container swiper">
+					<div class="slide-content-mySwiper">
+						<div class="card-wrapper swiper-wrapper" style="max-width: 100%; ">
+							<?php
+							while ($kolom_ulas = mysqli_fetch_array($ulasan)) {
+							?>
+							<div class="card swiper-slide">	
+								<div class="card-content">
+										<br><h2 class="name">
+												<?php echo $kolom_ulas['nama_pelanggan']; ?>
+												<p>
+													<?php echo $kolom_ulas['nama_elektronik']; ?>
+												</p>
+											</h2><br>
+										<p class="description"> 
+											<?php echo $kolom_ulas['ulasan']; ?>
+										</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+								<br><h2 class="name">Arsyita Devanaya</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+								<br><h2 class="name">Gandi Rukmaning</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+								<br><h2 class="name">Shofira Izza</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+								<br><h2 class="name">Alfira Putri</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+								<br><h2 class="name">Mirta Chadhirotin</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<div class="card swiper-slide">
+								<div class="card-content">
+								<br><h2 class="name">Singa Lawu</h2><br>
+									<p class="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe earum obcaecati voluptatum minus! Vitae asperiores atque pariatur illo corrupti molestias perspiciatis possimus voluptatum harum rerum recusandae quia, nulla, maiores est?</p>
+								</div>
+							</div>
+							<?php } ?>
 						</div>
 					</div>
-				<?php } ?>
+					<div class="swiper-pagination"></div>
+				</div>
 			</div>
 		</div>
 	</section>
@@ -339,6 +414,12 @@ $ulasan = mysqli_query($conn, "SELECT ulasan.id_ulasan, ulasan.ulasan, pemesanan
 	</footer>
 	<!-- Footer section end -->
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+	<script src="https://kit.fontawesome.com/10512a1c83.js" crossorigin="anonymous"></script>
+
+	<!-- Swiper JS -->
+	<script src="js/swiper-bundle.min.js"></script>
+
 	<!--====== Javascripts & Jquery ======-->
 	<script src="js/jquery-3.2.1.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
@@ -346,6 +427,7 @@ $ulasan = mysqli_query($conn, "SELECT ulasan.id_ulasan, ulasan.ulasan, pemesanan
 	<script src="js/owl.carousel.min.js"></script>
 	<script src="js/mixitup.min.js"></script>
 	<script src="js/main.js"></script>
+	<script src="js/script.js"></script>
 
 </body>
 
