@@ -555,7 +555,78 @@ How section
  -------------------*/
 
 .how-section {
-	background-color: #212121;
+	background-color: #212121 ;
+}
+
+.slide-container {
+	max-width: 1120px;
+	width: 100%;
+	padding: 40px 0;
+}
+.slide-content {
+	margin: 0  40px;
+	overflow: hidden;
+}
+
+.slide-content-mySwiper {
+	margin: 0  40px;
+	overflow: hidden;
+}
+
+.card {
+	border-radius: 25px;
+	background-color: #2f2f2f;
+}
+
+.image-content,
+.card-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 10px 14px;
+}
+
+.name {
+	font-size: 24px;
+	font-weight: 500;
+	color: #ffffff;
+}
+
+.description {
+	font-size: 14px;
+	color: #cfcfcf;
+	text-align: center;
+}
+
+.swiper-navBtn {
+	color: #f32a2a;
+	transition: color 0.3s ease;
+}
+
+.swiper-navBtn:hover {
+	color: #ff2525;
+}
+
+.swiper-navBtn::before,
+.swiper-navBtn::after {
+	font-size: 40px;
+}
+
+.swiper-button-next {
+	right: 0;
+}
+
+.swiper-button-prev {
+	left: 0;
+}
+
+.swiper-pagination-bullet {
+	background-color: #c54343;
+	opacity: 1;
+}
+
+.swiper-pagination-bullet-active {
+	background-color: #ff2525;
 }
 
 .how-item .hi-icon {
@@ -1659,4 +1730,5 @@ Category page
 		height: 200px;
 	}
 }
+
 
