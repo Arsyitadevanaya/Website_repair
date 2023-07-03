@@ -310,7 +310,9 @@ $ulasan = mysqli_query($conn, "SELECT ulasan.id_ulasan, ulasan.ulasan, pemesanan
 	</section>
 	<!-- Subscription section end -->
 
-	<section class="premium-section spad">
+
+
+	<section class="how-section spad set-bg" style="background-color: #ffffff; ">
 		<div class="container">
 			<div class="section-title" align="center">
 				<h2>Ulasan Pelanggan</h2>
