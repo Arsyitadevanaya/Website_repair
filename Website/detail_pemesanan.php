@@ -159,7 +159,7 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
                 </div>
                 <div class="col-lg-7">
                     <div class="card">
-                        <h2 class="card-title" align="center">Riwayat Pemesanan</h2>
+                       <h2 class="card-title" align="center">Riwayat <span>Pemesanan</h2></span>
                         <div class="card-body">
                             <div class="container text-left">
                                 <div class="row row-cols-4">
