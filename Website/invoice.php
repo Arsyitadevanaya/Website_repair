@@ -73,97 +73,7 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style>
-        header {
-            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-
-        }
-
-        .card {
-            width: 100%;
-            /* Menggunakan lebar 100% agar kartu memenuhi lebar container */
-            max-width: 800px;
-            /* Mengatur lebar maksimum kartu */
-            background: #FFF;
-            box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-            backdrop-filter: blur(2px);
-            height: 100%;
-            font-family: 'Kaisei Decol', serif;
-        }
-
-
-
-        .container-form {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container-pemesanan {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 3000px;
-            /* Atur lebar maksimum sesuai kebutuhan Anda */
-            margin-left: auto;
-            margin-right: auto;
-
-
-            /* Mengatur tinggi container agar mengisi tinggi viewport */
-        }
-
-        h5 {
-            color: #212121;
-            text-align: center;
-            font-size: 60px;
-            font-family: 'Baloo Bhaijaan 2', cursive;
-        }
-
-        .row-cols-4 {
-            line-height: 40px;
-        }
-
-        .button {
-            font-family: 'K2D', sans-serif;
-            font-weight: 500;
-            color: #ffffff;
-            background-color: #f0aa42;
-            font-size: 15px;
-            border-radius: 50px;
-            border: 4px solid #f0aa42;
-            text-align: center;
-            width: 100px;
-
-        }
-
-
-
-        .btn {
-            height: 1px;
-            color: #ffffff;
-            background-color: #000000;
-            font-size: 20px;
-            border: 4px solid #000000;
-            border-radius: 20px;
-            padding: 6px;
-            letter-spacing: 5px;
-            cursor: pointer
-        }
-
-        .btn:hover {
-
-            border-color: #ededed;
-            background-color: #ededed;
-            color: black;
-        }
-
-        input {
-
-            width: 100px;
-            height: 30px;
-            font-size: 11px;
-        }
-    </style>
+    
 </head>
 
 <body>
@@ -271,8 +181,8 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
                                             <div class="col-8">
                                                 <form action="proses_ulasan.php" method="POST">
                                                     <textarea name="ulasan" id="ulasan" required
-                                                        style="width: 300px;"></textarea>
-                                                    <input type="submit" value="Kirim Ulasan">
+                                                        class="ulasan" ></textarea>
+                                                    <button type="submit" class="btn">Kirim Ulasan</button>
                                                 </form>
                                             </div>
 
@@ -289,7 +199,7 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
                 <div class="col-lg-5">
                     <div class="container container-form">
                         <div class="card">
-
+                        <h1 class="card-title" align="center">Scan <span>Me</h1></span>
                             <div class="card-body">
                                 <img src="img/barcode.png" alt="">
                             </div>
