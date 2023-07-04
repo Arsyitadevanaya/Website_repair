@@ -732,11 +732,40 @@ Intro section
 	background: #212121;
 	backdrop-filter: blur(2px);
 	height: 100%;
+	border-radius: 30px;
 }
 
-@media (min-width: 768px) {
+.order-section .card:hover {
+	transform: scale(0.98);
+	box-shadow: rgba(112, 112, 112, 0.75);
+}
+
+@media (min-width: 768px) and (max-width: 992px){
+	.order-section .card {
+		width: 70%;
+		/* Mengatur lebar kartu menjadi 50% pada layar dengan lebar minimal 768px */
+	}
+}
+
+@media (max-width: 767px) {
+.order-section .card input[type="button"] {
+	width: 100px;
+	display: inline-block;
+	margin-right: 10px;
+}
+}
+
+
+@media (min-width: 992px) {
 	.order-section .card {
 		width: 50%;
+		/* Mengatur lebar kartu menjadi 50% pada layar dengan lebar minimal 768px */
+	}
+}
+
+@media (min-width: 0px) and (max-width: 360px) {
+	.order-section .card {
+		width: 100%;
 		/* Mengatur lebar kartu menjadi 50% pada layar dengan lebar minimal 768px */
 	}
 }
@@ -770,7 +799,7 @@ Intro section
 
 .order-section .card input,
 .order-section .card select {
-	border-radius: 100px;
+	border-radius: 5px;
 	background: #F1F1F1;
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 	height: 50px;
@@ -1151,19 +1180,52 @@ detail page
 }
 
 .detail-section .card {
-	background: #ffffff;
+	background: #000;
 	padding-top: 20px;
 	color: rgb(0, 0, 0);
 	width: 100%;
 	/* Menggunakan lebar 100% agar kartu memenuhi lebar container */
 	max-width: 800px;
 	/* Mengatur lebar maksimum kartu */
-	background: #f7f7f7;
+	background: #000000;
 	backdrop-filter: blur(2px);
 	height: 100%;
 	box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 30px;
+}
+
+.detail-section .ulasan {
+	width: 100%;
+	height: 100px;
+
+ }
+
+
+.detail-section .card:hover {
+	transform: scale(0.98);
+	box-shadow: rgb(238, 238, 238);
+}
+
+.detail-section .card-title {
+	color: #fff;
 
 }
+
+.detail-section .row {
+	color: #fff;
+}
+
+.detail-section .card-title span {
+	color: #ff2525;
+}
+
+.button-container a input[type="button"] {
+	background-color: #f0aa42; /* Ganti dengan warna yang Anda inginkan */
+	font-size: 14px;
+	font-weight: bold;
+	
+  }
+  
 
 @media (min-width: 768px) {
 	.order-section .card {
@@ -1199,7 +1261,7 @@ detail page
 	line-height: 40px;
 }
 
-.detail-section .button {
+.detail-section .btn {
 	font-family: 'K2D', sans-serif;
 	font-weight: 500;
 	color: #ffffff;
@@ -1208,9 +1270,14 @@ detail page
 	border-radius: 50px;
 	border: 4px solid #f0aa42;
 	text-align: center;
-	width: 100px;
+	width: 150px;
+	height: 45px;
+	padding-bottom: 10px;
 }
 
+.detail-section span {
+	color: #ff2525;
+}
 
 
 /* ----------------
@@ -1710,8 +1777,9 @@ Category page
 		font-size: 36px;
 	}
 
-	.header-section {
+	.header-section, .footer-section {
 		padding: 0;
+		width: 110%;
 	}
 
 	.player-box {
@@ -1722,13 +1790,72 @@ Category page
 		padding: 100px 15px;
 	}
 
+	.detail-section .card {
+		margin-top: 30px;
+	}
 }
+
+@media (min-width: 200px) and (max-width: 360px) {
+	.header-section, .footer-section {
+		width: 200%;
+	}
+
+	.detail-section .card {
+		margin-top: 30px;
+	}
+
+	.detail-section .container {
+    width: 130%;
+    padding-left: 30px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+	.detail-section .spad {
+		padding: 0px 15px;
+	}
+	
+	.detail-section .ulasan {
+		width: 65%;
+		height: 100px;
+	}
+
+	
+}
+
+@media (min-width: 361px) and (max-width: 767px) {
+	.detail-section .row {
+		font-size: 12px;
+	}
+
+	.detail-section .col-3, .col-1, .col-8 {
+		padding-left: 0px;
+		padding-right: 0px;
+	}
+	.detail-section .card {
+		padding-left: 20px;
+	}
+
+	.detail-section .col-lg-7 {
+		margin-top: 20px;
+	}
+}
+
 
 @media (min-width: 769px) and (max-width: 992px) {
 	#tips-trick .video {
 		width: 50%;
 		height: 200px;
 	}
+
+	.detail-section .col-lg-7 {
+		margin-top: 20px;
+	}
 }
 
+@media (max-width: 200px)  {
+	.header-section, .footer-section {
+		width: 200%;
+	}
+}
 
