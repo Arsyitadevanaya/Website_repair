@@ -66,7 +66,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     <link rel="stylesheet" href="css/slicknav.min.css" />
 
     <!-- Main Stylesheets -->
-    <link rel="stylesheet" href="css/style1.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
 
 
@@ -77,27 +77,121 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
     <![endif]-->
 
     <style>
-        .card-body.login-failed {
-            background-color: #f8d7da;
-            padding: 10px;
-            border: 1px solid #f5c6cb;
-            border-radius: 5px;
+          
+        .btn_regis {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card h1 {
+            color: white;
+            font-size: 60px;
+        }
+
+        @media (max-width: 768px) {
+            .card h1 {
+                font-size: 30px;
+            }
+
+            .login-section .card input[type="submit"],
+            .registrasi-section .card input[type="submit"] {
+                border-radius: 0px;
+                background: #ff2525;
+                border-color: #fc0254;
+                width: 100px;
+                height: 25px;
+                flex-shrink: 0;
+                color: #FFF;
+                font-size: 5px;
+            }
+
+
+
+        }
+
+        @media (min-width: 769px) and (max-width: 992px) {
+            .card h1 {
+                font-size: 45px;
+            }
+
+
+        }
+
+        @media (min-width: 993px) {
+            .card h1 {
+                font-size: 60px;
+            }
+
+
+
+        }
+
+        .card p {
+            color: #cacaca;
             text-align: center;
         }
 
-        .card-body.login-failed h6 {
-            color: #721c24;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0;
+        .login-section .container-form,
+        .registrasi-section .container-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* Mengatur tinggi container agar mengisi tinggi viewport */
         }
 
-        .card-body.login-failed p {
-            color: #721c24;
-            font-size: 10px;
-            font-weight: bold;
-            margin: 0;
+        .login-section p,
+        .registrasi-section p {
+            margin-bottom: 20px;
+            padding-top: 10px;
         }
+
+        .login-section .card,
+        .registrasi-section .card {
+            background: #ffffff;
+            padding-top: 20px;
+            color: white;
+            width: 70%;
+            /* Menggunakan lebar 100% agar kartu memenuhi lebar container */
+            max-width: 500px;
+            /* Mengatur lebar maksimum kartu */
+            background: #212121;
+            height: 100%;
+            box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.25);
+        }
+
+        .login-section .card input[type="submit"],
+        .registrasi-section .card input[type="submit"] {
+            border-radius: 100px;
+            background: #ff2525;
+            border-color: #fc0254;
+            width: 200px;
+            height: 50px;
+            flex-shrink: 0;
+            color: #FFF;
+            font-size: 20px;
+        }
+
+        .login-section .card input[type="submit"]:hover,
+        .login-section .card input[type="button"]:hover,
+        .registrasi-section .card input[type="submit"]:hover,
+        .registrasi-section .card input[type="button"]:hover {
+            color: black;
+            background-color: rgb(192, 192, 192);
+            border: none;
+        }
+
+        .login-section label,
+        .registrasi-section label {
+            color: #868686;
+            color: #cacaca;
+        }
+
+        h6 {
+            color: white;
+        }
+
         .wa_btn {
             position: fixed;
             right: 30px;
@@ -110,6 +204,7 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
             display: flex;
             justify-content: center;
             align-items: center;
+
             /* Tambahkan z-index dengan nilai tinggi */
             z-index: 9999;
         }
@@ -127,7 +222,10 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
             position: absolute;
             right: 150px;
             color: white;
+
         }
+
+
 
         .wa_btn span {
             color: white;
@@ -146,7 +244,38 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                 right: 0;
             }
 
+            .card form input,.card form .wrapper input {
+                font-size: 10px;
+                height: 25px;
+                margin-bottom: 5px;
+            }
 
+            .card form p {
+                font-size: 10px;
+            }
+
+            label{
+                font-size: 10px;
+            }
+            .login-section .card input[type="submit"],
+            .registrasi-section .card input[type="submit"] {
+                border-radius: 100px;
+                background: #ff2525;
+                border-color: #fc0254;
+                width: 150px;
+                height: 40px;
+                flex-shrink: 0;
+                color: #FFF;
+                font-size: 15px;
+            }
+           
+
+
+        }
+
+        .card form input {
+
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -216,20 +345,19 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['key'])) {
                     <form action="#" method="post">
                         <input type="text" class="form-control" id="merekInput" placeholder="Email" autocomplete="off"
                             name="email">
-                        <br>
                         <div class="wrapper">
-                            <input type="password" name="password" class="form-control" placeholder="Enter Password"
+                            <input type="password" name="password" class="form-control" placeholder="Password"
                                 required>
                             <span class="show-btn"><i class="fa fa-eye-slash"></i></span>
                         </div>
-                        <p style="text-align: right;"><a href="lupa_password.php">Forgot Password?</a></p>
+                        <p style="text-align: right;margin-bottom:5px;"><a href="lupa_password.php">Forgot Password?</a></p>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1" name="cekbox">
                             <label class="form-check-label" for="exampleCheck1">Remember Me</label>
                         </div>
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                            <input type="submit" value="Login" name="masuk"><br><br>
-                        </div><br>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center btn_regis">
+                            <input type="submit" value="Login" name="masuk">
+                        </div>
                         <p align="center">Belum Memiliki Akun? <a href="registrasi.php">Registrasi</a></p>
                     </form>
                 </div>
