@@ -8,6 +8,7 @@ if (!isset($_SESSION["login_pelanggan"]) || $_SESSION["login_pelanggan"] !== tru
 $id = $_GET['id'];
 $id_user = $_SESSION['user'];
 
+
 if (isset($_POST['pesan'])) {
     if (input($_POST) > 0) {
         echo "data berhasil ditambahkan";
@@ -18,12 +19,12 @@ $data = mysqli_query($conn, "SELECT pelanggan.id_pelanggan, user.email, pelangga
                              FROM pelanggan 
                              JOIN user ON pelanggan.id_user = user.id_user 
                              WHERE user.id_user='$id_user'");
-
 $d = mysqli_fetch_array($data);
-$query = mysqli_query($conn, "SELECT pelanggan.id_pelanggan, elektronik.id_elektronik, elektronik.nama AS nama_elektronik, pemesanan.id_pemesanan,pemesanan.id_pelanggan, pemesanan.merk_tipe, pemesanan.status, pemesanan.waktu_pesan, pemesanan.tanggal_pesan 
+$query = mysqli_query($conn, "SELECT pelanggan.id_pelanggan, elektronik.id_elektronik, elektronik.nama AS nama_elektronik, pemesanan.id_pemesanan,pemesanan.id_pelanggan, pemesanan.merk_tipe, pemesanan.status, pemesanan.waktu_pesan, pemesanan.tanggal_pesan, pemesanan.id_teknisi, teknisi.id_teknisi,teknisi.nama AS nama_teknisi
                              FROM pemesanan 
                              JOIN elektronik ON pemesanan.id_elektronik = elektronik.id_elektronik
                              JOIN pelanggan ON pemesanan.id_pelanggan = pelanggan.id_pelanggan 
+                             LEFT JOIN teknisi ON pemesanan.id_teknisi = teknisi.id_teknisi
                              WHERE pemesanan.id_pemesanan = $id");
 
 $a = mysqli_fetch_array($query);
@@ -65,7 +66,7 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
     <link rel="stylesheet" href="css/slicknav.min.css" />
 
     <!-- Main Stylesheets -->
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/style1.css" />
 
 
 
@@ -75,7 +76,115 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style>
+        @media (max-width: 768px) {
+            .card h2 {
+                font-size: 30px;
+            }
+        }
 
+        .detail-section .button {
+            font-family: 'K2D', sans-serif;
+            font-weight: 500;
+            color: #FFFFFF;
+            font-size: 20px;
+            border-radius: 50px;
+            text-align: center;
+            width: 50%;
+        }
+
+        .button-container a input[type="button"] {
+            background-color: #f0aa42;
+            /* Ganti dengan warna yang Anda inginkan */
+            font-size: 14px;
+            font-weight: bold;
+
+        }
+
+        .wa_btn {
+            position: fixed;
+            right: 30px;
+            bottom: 50px;
+            text-decoration: none;
+            color: black;
+            background-color: rgb(35, 243, 16);
+            padding: 10px 20px;
+            border-radius: 13px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* Tambahkan z-index dengan nilai tinggi */
+            z-index: 9999;
+        }
+
+        .wa_btn i {
+            font-size: 60px;
+            padding: 0 10px;
+            background-color: rgb(35, 243, 16);
+            border-radius: 50%;
+            height: 80px;
+            width: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            right: 150px;
+            color: white;
+        }
+
+        .wa_btn span {
+            color: white;
+        }
+
+        @media (max-width: 576px) {
+            .wa_btn {
+                background-color: transparent;
+            }
+
+            .wa_btn span {
+                display: none;
+            }
+
+            .wa_btn i {
+                right: 0;
+            }
+
+            .col-lg-7 .card .card-body .container .button {
+                font-size: 20px;
+                width: 150px;
+                height: 50px;
+
+            }
+
+            .card .card-body .container {
+                font-size: 10px;
+
+            }
+
+            ._status {
+                display: flex;
+                align-items: left;
+                justify-content: left;
+                padding: 0px;
+
+
+            }
+
+            .button {
+                text-align: center;
+                white-space: nowrap;
+                padding: 0px;
+                width: 100px;
+            }
+
+
+        }
+
+        .button._diterima {
+            background-color: #ffa011;
+            border: 4px solid #ffa011;
+
+            /* Atau gunakan kode HEX warna yang sesuai */
+        }
     </style>
 </head>
 
@@ -94,10 +203,10 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
         <div class="header-right">
             <div class="user-panel">
                 <?php if (!isset($_SESSION["login_pelanggan"]) || $_SESSION["login_pelanggan"] !== true) { ?>
-                    <a href="login.php" class="hr-btn">Login</a><span>|</span>
+                    <a href="login.php" class="login">Login</a><span>|</span>
                     <a href="registrasi.php" class="register">Create an account</a>
                 <?php } else { ?>
-                    <a href="profil.php" class="hr-btn">Profil</a><span>|</span>
+                    <a href="profil.php" class="login">Profil</a><span>|</span>
                     <a href="keluar.php" class="register">Keluar</a>
                 <?php } ?>
             </div>
@@ -112,7 +221,7 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
                     <li><a href="daftar_harga.php">Daftar Harga</a></li>
                 </ul>
             </li>
-            <li><a href="contact.php">Contact</a></li>
+            <li><a href="#footer">Contact</a></li>
         </ul>
 
     </header>
@@ -123,31 +232,31 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
     <section class="detail-section spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-5">
+                <div class="col-lg-5 mb-4 mb-lg-0">
                     <div class="container container-form">
                         <div class="card">
                             <h2 class="card-title" align="center">Biodata</h2>
                             <div class="card-body">
                                 <div class="container text-left">
                                     <div class="row row-cols-4">
-                                        <div class="col-3">Nama</div>
+                                        <div class="col-5">Nama</div>
                                         <div class="col-1">:</div>
-                                        <div class="col-8">
+                                        <div class="col-6">
                                             <?php echo $d['nama']; ?>
                                         </div>
-                                        <div class="col-3">Email</div>
+                                        <div class="col-5">Email</div>
                                         <div class="col-1">:</div>
-                                        <div class="col-8">
+                                        <div class="col-6">
                                             <?php echo $d['email']; ?>
                                         </div>
-                                        <div class="col-3">No HP</div>
+                                        <div class="col-5">No HP</div>
                                         <div class="col-1">:</div>
-                                        <div class="col-8">
+                                        <div class="col-6">
                                             <?php echo $d['nomor_hp']; ?>
                                         </div>
-                                        <div class="col-3">Alamat</div>
+                                        <div class="col-5">Alamat</div>
                                         <div class="col-1">:</div>
-                                        <div class="col-8">
+                                        <div class="col-6">
                                             <?php echo $d['alamat']; ?>
                                         </div>
                                     </div>
@@ -157,59 +266,89 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-7">
-                    <div class="card">
-                       <h2 class="card-title" align="center">Riwayat <span>Pemesanan</h2></span>
-                        <div class="card-body">
-                            <div class="container text-left">
-                                <div class="row row-cols-4">
-                                    <div class="col-4">Status</div>
-                                    <div class="col-1">:</div>
-                                    <div class="col-7">
-                                        <div class="button">
-                                            <?php echo $a['status']; ?>
+                <div class="col-lg-7 mb-4 mb-lg-0">
+                    <div class="container container-form">
+                        <div class="card">
+                            <h2 class="card-title" align="center"><span>Riwayat</span> Pemesanan</h2>
+                            <div class="card-body">
+                                <div class="container text-left">
+                                    <div class="row row-cols-4">
+                                        <div class="col-5 ">Status</div>
+                                        <div class="col-1">:</div>
+                                        <div class="col-6 _status">
+                                            <?php if ($a['status'] == 'berhasil') { ?>
+                                                <div class="button _berhasil">
+                                                    <?php echo $a['status']; ?>
+                                                </div>
+                                            <?php } elseif ($a['status'] == 'menunggu') { ?>
+                                                <div class="button _menunggu">
+                                                    <?php echo $a['status']; ?>
+                                                </div>
+                                            <?php } elseif ($a['status'] == 'berlangsung') { ?>
+                                                <div class="button _berlangsung">
+                                                    <?php echo $a['status']; ?>
+                                                </div>
+                                            <?php } elseif ($a['status'] == 'diterima') { ?>
+                                                <div class="button _diterima">
+                                                    <?php echo $a['status']; ?>
+                                                </div>
+                                            <?php }elseif ($a['status'] == 'dibatalkan') { ?>
+                                                <div class="button _dibatalkan">
+                                                    <?php echo $a['status']; ?>
+                                                </div>
+                                            <?php } ?>
                                         </div>
-                                    </div>
-                                    <div class="col-4">Tanggal</div>
-                                    <div class="col-1">:</div>
-                                    <div class="col-7">
-                                        <?php echo date("d M Y", strtotime($a['tanggal_pesan'])); ?>
-                                    </div>
-                                    <div class="col-4">Waktu</div>
-                                    <div class="col-1">:</div>
-                                    <div class="col-7">
-                                        <?php echo date("H:i", strtotime($a['waktu_pesan'])); ?> WIB
-                                    </div>
-                                    <div class="col-4">Jenis Barang</div>
-                                    <div class="col-1">:</div>
-                                    <div class="col-7">
-                                        <?php echo $a['nama_elektronik']; ?>
-                                    </div>
-                                    <div class="col-4">Merek dan Tipe</div>
-                                    <div class="col-1">:</div>
-                                    <div class="col-7">
-                                        <?php echo $a['merk_tipe']; ?>
-                                    </div>
-                                    <div class="col-4">Harga</div>
-                                    <div class="col-1">:</div>
-                                    <div class="col-7">
-                                        <?php
-                                        if (empty($data_invoice)) {
-                                            echo '-';
-                                        } else {
-                                            ?>
-                                            <div class="button-container">
-                                                <a href="invoice.php?id=<?php echo $a['id_pemesanan']; ?>"> <input type="button" value="Invoice"></a>
-                                            </div>
-
+                                        <div class="col-5">Tanggal</div>
+                                        <div class="col-1">:</div>
+                                        <div class="col-6">
+                                            <?php echo date("d M Y", strtotime($a['tanggal_pesan'])); ?>
+                                        </div>
+                                        <div class="col-5">Waktu</div>
+                                        <div class="col-1">:</div>
+                                        <div class="col-6">
+                                            <?php echo date("H:i", strtotime($a['waktu_pesan'])); ?> WIB
+                                        </div>
+                                        <div class="col-5">Jenis Barang</div>
+                                        <div class="col-1">:</div>
+                                        <div class="col-6">
+                                            <?php echo $a['nama_elektronik']; ?>
+                                        </div>
+                                        <div class="col-5">Merek dan Tipe</div>
+                                        <div class="col-1">:</div>
+                                        <div class="col-6">
+                                            <?php echo $a['merk_tipe']; ?>
+                                        </div>
+                                        <div class="col-5">Teknisi</div>
+                                        <div class="col-1">:</div>
+                                        <div class="col-6">
+                                            <?php if ($a['nama_teknisi'] == NULL) {
+                                                echo '-';
+                                            } else {
+                                                echo $a['nama_teknisi'];
+                                            } ?>
+                                        </div>
+                                        <div class="col-5">Harga</div>
+                                        <div class="col-1">:</div>
+                                        <div class="col-6">
                                             <?php
-                                        }
-                                        ?>
+                                            if (empty($data_invoice)) {
+                                                echo '-';
+                                            } else {
+                                                ?>
+                                                <div class="button-container _invoice">
+                                                    <a href="invoice.php?id=<?php echo $a['id_pemesanan']; ?>"> <input
+                                                            type="button" value="Invoice"></a>
+                                                </div>
+
+                                                <?php
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -219,11 +358,17 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
 
     </section>
     <!-- Intro section end -->
-
+    <!-- Whatsapp section  -->
+    <a class="wa_btn" href="https://wa.me/6285175002568"><i class="fa fa-whatsapp fa-2xl"></i> <span> Chat
+            WhatsApp</span> </a>
+    <!-- Whatsapp section end -->
     <!-- Footer section -->
-    <footer class="footer-section">
+    <footer id="footer" class="footer-section">
         <div class="container">
             <div class="row">
+                <div class="col-xl-6 col-lg-5 order-lg-1">
+                    <img src="img/logo_repair.png" alt="">
+                </div>
                 <div class="col-xl-6 col-lg-7 order-lg-2">
                     <div class="footer-widget">
                         <h2>Contact Us</h2>
@@ -238,18 +383,16 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
                     </div>
 
                 </div>
-                <div class="col-xl-6 col-lg-5 order-lg-1">
-                    <img src="img/logo_repair.png" alt="">
-                </div>
+
             </div>
 
         </div>
         <div class="copyright">
-			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-			Copyright &copy;
-			<script>document.write(new Date().getFullYear());</script> by RepairLectric</a>
-			<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-		</div>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> by RepairLectric</a>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </div>
     </footer>
     <!-- Footer section end -->
 
