@@ -66,7 +66,7 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
     <link rel="stylesheet" href="css/slicknav.min.css" />
 
     <!-- Main Stylesheets -->
-    <link rel="stylesheet" href="css/style1.css" />
+    <link rel="stylesheet" href="css/style.css" />
 
 
 
@@ -135,6 +135,14 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
             color: white;
         }
 
+        @media (min-width: 260px) and (max-width: 920px){
+        .col-lg-7 .card .card-body .container .button {
+            font-size: 12px;
+            width: 90px;
+        }
+    }
+
+    
         @media (max-width: 576px) {
             .wa_btn {
                 background-color: transparent;
@@ -148,12 +156,7 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
                 right: 0;
             }
 
-            .col-lg-7 .card .card-body .container .button {
-                font-size: 20px;
-                width: 150px;
-                height: 50px;
-
-            }
+           
 
             .card .card-body .container {
                 font-size: 10px;
@@ -182,6 +185,13 @@ $data_invoice = mysqli_fetch_all($query, MYSQLI_ASSOC);
         .button._diterima {
             background-color: #ffa011;
             border: 4px solid #ffa011;
+
+            /* Atau gunakan kode HEX warna yang sesuai */
+        }
+
+        .button._dibatalkan {
+            background-color: #ff0000;
+            border: 4px solid #ff0000;
 
             /* Atau gunakan kode HEX warna yang sesuai */
         }
