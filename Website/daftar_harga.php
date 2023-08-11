@@ -79,7 +79,6 @@ require "function.php";
         .btn:hover {
             border-color: #000000;
             background-color: #ededed;
-            transform: scale(1.1);
         }
 
         .judul-id {
@@ -110,9 +109,42 @@ require "function.php";
             }
         }
 
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .card-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card-title {
+            font-size: 24px;
+        }
+
+        .card-image {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .card-image img {
+            display: flex;
+            max-width: 100%;
+            max-height: 150px;
+            object-fit: contain;
+        }
+
+        .card-price {
+            font-weight: bold;
+        }
+
         .card {
-            max-width: 500px;
-            height: 350px;
+            max-width: 1100px;
+            height: auto;
             background: #ffffff;
             border-radius: 20px;
             display: flex;
@@ -121,11 +153,10 @@ require "function.php";
             box-shadow: 10px 10px 18px 0px rgba(112, 112, 112, 0.75);
             -webkit-box-shadow: 10px 10px 18px 0px rgba(112, 112, 112, 0.75);
             -moz-box-shadow: 10px 10px 18px 0px rgba(112, 112, 112, 0.75);
+            transition: box-shadow 0.3s;
         }
 
-
         .card:hover {
-            transform: scale(0.98);
             box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.25);
         }
 
@@ -144,8 +175,8 @@ require "function.php";
 
 
         #daftar_harga .card {
-            width: 600px;
-            height: 500px;
+            width: 1100px;
+            height: auto;
             background-color: white;
             box-shadow: 10px 10px 18px 0px rgba(112, 112, 112, 0.75);
             -webkit-box-shadow: 10px 10px 18px 0px rgba(112, 112, 112, 0.75);
@@ -155,15 +186,20 @@ require "function.php";
         #daftar_harga .card-title {
             margin-top: 40px;
             margin-bottom: 40px;
-            padding-top: 8px;
-            padding-bottom: 8px;
+            padding-top: 15px;
+            padding-bottom: 15px;
             background-color: #212121;
             color: white;
             max-width: 100%;
             border-radius: 30px;
             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             align-items: center;
+            text-align: center;
+            position: relative;
+            display: inline-block;
+            padding: 10px 110px;
         }
+
 
         #daftar_harga .card-head {
             margin-bottom: 20px;
@@ -208,7 +244,6 @@ require "function.php";
             color: #000000;
             background-color: #ededed;
             border-color: #D9D9D9;
-            transform: scale(1.1);
         }
 
         .title h1 {
@@ -228,6 +263,26 @@ require "function.php";
             text-align: center;
             color: #000000;
         }
+
+        /* Style for the note section */
+        .note-section {
+            margin-top: 20px;
+            border-top: 1px;
+            padding-top: 20px;
+        }
+
+        /* Style for the note title */
+        .note-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Style for the note list */
+        .note-list {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
 
     </style>
 </head>
@@ -277,135 +332,189 @@ require "function.php";
 
     <section class="harga-section spad">
 
-        <div id="daftar_harga" class="py-5">
+        <div id="daftar_harga" class="py-2">
             <div class="container">
                 <div class="text-center mb-4">
                     <h2 class="judul-id">Daftar Harga</h2>
                 </div>
                 <div class="row row-cols-1 row-cols-md-2 g-4">
-                    <div class="col">
+                    <div class="col mb-4">
                         <div class="card h-100">
                             <div class="card-body text-center">
                                 <h3 class="card-title">Television</h3>
-                                <div class="card-head mx-auto">
-                                    <img src="img/televisi.png" alt="" width="180px">
-                                </div>
-                                <h4>Biaya</h4>
-                                <div class="daftar_harga">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
-                                                <td>Jasa Pengecekan</td>
-                                                <td>Rp 65.000</td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
-                                                <td>Jasa Service dan Pergantian Komponen TV LED dan LCD</td>
-                                                <td>Rp 300.000 - Rp 400.000</td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
-                                                <td>Jasa Service dan Pergantian Komponen TV Tabung</td>
-                                                <td>Rp 100.000 - Rp 300.000</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <p>*Jasa servis tidak termasuk komponen</p>
+                                <div class="row">
+                                    <div class="col-lg-5"> <!-- Adjust column widths here -->
+                                        <div class="card-head mx-auto">
+                                            <img src="img/televisi.png" alt="" width="180px">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6"> <!-- Adjust column widths here -->
+                                        <h4>Biaya</h4>
+                                        <div class="daftar_harga">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Pengecekan</td>
+                                                        <td>Rp 65.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Service Kerusakan Ringan Tanpa Biaya Pergantian Komponen TV</td>
+                                                        <td>Rp 50.000 - Rp 150.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Service Kerusakan Sedang-Berat Beserta Biaya Pergantian Komponen TV</td>
+                                                        <td>Rp 150.000 - Rp 600.000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col mb-4">
                         <div class="card h-100">
                             <div class="card-body text-center">
                                 <h3 class="card-title" style="align-items: center;">Kulkas</h3>
-                                <div class="card-head mx-auto">
-                                    <img src="img/kulkas.png" alt="" width="150px">
-                                </div>
-                                <h4>Biaya</h4>
-                                <div class="daftar_harga">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
-                                                <td>Jasa Pengecekan</td>
-                                                <td>Rp 65.000</td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
-                                                <td>Jasa Service dan Pergantian Komponen (satu pintu)</td>
-                                                <td>Rp 150.000 - Rp 400.000</td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
-                                                <td>Jasa Service dan Pergantian Komponen (dua pintu)</td>
-                                                <td>Rp 200.000 - Rp 500.000</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <p>*Jasa servis tidak termasuk komponen</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="card h-100">
-                            <div class="card-body text-center">
-                                <h3 class="card-title">Air Conditioner</h3>
-                                <div class="card-head mx-auto">
-                                    <img src="img/ac.png" alt="" width="150px">
-                                </div>
-                                <h4>Biaya</h4>
-                                <div class="daftar_harga">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
-                                                <td>Jasa Pengecekan</td>
-                                                <td>Rp 65.000</td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
-                                                <td>Jasa Service dan Pergantian Komponen</td>
-                                                <td>Rp 250.000 - Rp 700.000</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <p>*Jasa servis tidak termasuk komponen</p>
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="card-head mx-auto">
+                                            <img src="img/kulkas.png" alt="" width="180px">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h4>Biaya</h4>
+                                        <div class="daftar_harga">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Pengecekan</td>
+                                                        <td>Rp 65.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Service Kerusakan Ringan Tanpa Biaya Pergantian Komponen Kulkas</td>
+                                                        <td>Rp 50.000 - Rp 150.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Service Kerusakan Sedang-Berat Beserta Biaya Pergantian Komponen Kulkas</td>
+                                                        <td>Rp 150.000 - Rp 600.000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col mb-4">
                         <div class="card h-100">
                             <div class="card-body text-center">
                                 <h3 class="card-title">Mesin Cuci</h3>
-                                <div class="card-head mx-auto">
-                                    <img src="img/mesin cuci.png" alt="" width="230px">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="card-head mx-auto">
+                                            <img src="img/mesin cuci.png" alt="" width="200px">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h4>Biaya</h4>
+                                        <div class="daftar_harga">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Pengecekan</td>
+                                                        <td>Rp 65.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Service Kerusakan Ringan Tanpa Biaya Pergantian Komponen Mesin Cuci</td>
+                                                        <td>Rp 50.000 - Rp 150.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Service Kerusakan Sedang-Berat Beserta Biaya Pergantian Komponen Mesin Cuci</td>
+                                                        <td>Rp 150.000 - Rp 600.000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
-                                <h4>Biaya</h4>
-                                <div class="daftar_harga">
-                                    <table class="table">
-                                        <tbody>
-                                            <tr>
-                                                <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
-                                                <td>Jasa Pengecekan</td>
-                                                <td>Rp 65.000</td>
-                                            </tr>
-                                            <tr>
-                                                <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
-                                                <td>Jasa Service dan Pergantian Komponen</td>
-                                                <td>Rp 350.000 - Rp 700.000</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <p>*Jasa servis tidak termasuk komponen</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-4">
+                        <div class="card h-100">
+                            <div class="card-body text-center">
+                                <h3 class="card-title">Air Conditioner</h3>
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <div class="card-head mx-auto">
+                                            <img src="img/ac.png" alt="" width="180px">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <h4>Biaya</h4>
+                                        <div class="daftar_harga">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Pengecekan</td>
+                                                        <td>Rp 65.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Service Kerusakan Ringan Tanpa Biaya Pergantian Komponen AC</td>
+                                                        <td>Rp 50.000 - Rp 150.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Jasa Service Kerusakan Sedang-Berat Beserta Biaya Pergantian Komponen AC</td>
+                                                        <td>Rp 150.000 - Rp 600.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Cuci AC</td>
+                                                        <td>Rp 100.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Isi Ulang Freon</td>
+                                                        <td>Rp 250.000 - Rp 550.000</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td><i class="fa-sharp fa-solid fa-circle-check text-muted"></i></td>
+                                                        <td>Tambah Freon</td>
+                                                        <td>Rp 150.000 - Rp 400.000</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div class="note-section">
+                    <p class="note-title">Note:</p>
+                    <ul class="note-list">
+                        <li>Untuk kerusakan ringan beserta dengan biaya komponen jika terjadi pergantian</li>
+                        <li>Untuk kerusakan sedang-berat tidak disertakan biaya komponen jika terjadi pergantian</li>
+                        <li>Untuk semua harga menyesuaikan dengan jenis dan tipe elektronik</li>
+                    </ul>
+                </div>
+
                 <div class="d-flex justify-content-center">
                     <a href="https://wa.me/6285175002568" target="_blank" class="whatsapp-button">
                         Harga Selengkapnya
